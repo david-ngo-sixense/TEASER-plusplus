@@ -25,6 +25,7 @@ TEST(RegistrationTest, LargeModel) {
 
   teaser::PLYReader reader;
   teaser::PointCloud src_cloud;
+  #undef read
   auto status = reader.read(model_file, src_cloud);
   EXPECT_EQ(status, 0);
   auto eigen_src = teaser::test::teaserPointCloudToEigenMatrix<double>(src_cloud);

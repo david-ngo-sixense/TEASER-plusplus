@@ -139,6 +139,7 @@ protected:
     // Load src model
     teaser::PLYReader reader;
     teaser::PointCloud src_cloud;
+	#undef read
     auto status = reader.read(src_file, src_cloud);
     EXPECT_EQ(status, 0);
     benchmark_data.src = teaser::test::teaserPointCloudToEigenMatrix<double>(src_cloud);

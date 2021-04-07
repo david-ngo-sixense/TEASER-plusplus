@@ -19,6 +19,7 @@ TEST(FPFHMatcherTest, SelfMatching) {
   teaser::PLYReader reader;
   teaser::PointCloud cloud1;
   teaser::PointCloud cloud2;
+  #undef read
   auto status = reader.read("./data/canstick.ply", cloud1);
   EXPECT_EQ(status, 0);
   status = reader.read("./data/canstick.ply", cloud2);

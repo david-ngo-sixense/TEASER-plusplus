@@ -13,12 +13,15 @@
 #include <fstream>
 #include <chrono>
 #include <cmath>
+#include <math.h>
 #include <random>
 
 #include <Eigen/Eigenvalues>
 
 #include "teaser/registration.h"
 #include "test_utils.h"
+
+ 
 
 TEST(RotationSolverTest, FGRRotation) {
   double ALLOWED_ROTATION_ERROR = 1e-5;
@@ -52,7 +55,7 @@ TEST(RotationSolverTest, FGRRotation) {
       src_points.col(i) = Eigen::Matrix<double, 3, Eigen::Dynamic>::Random(3, 1);
     }
     Eigen::Matrix3d ref_R;
-    std::uniform_real_distribution<double> unif(0, 2 * M_PI);
+    std::uniform_real_distribution<double> unif(0, 2 * 3.1415609);
     std::default_random_engine re;
 
     // Prepare solver
@@ -166,7 +169,7 @@ TEST(RotationSolverTest, GNCTLS) {
       src_points.col(i) = Eigen::Matrix<double, 3, Eigen::Dynamic>::Random(3, 1);
     }
     Eigen::Matrix3d ref_R;
-    std::uniform_real_distribution<double> unif(0, 2 * M_PI);
+    std::uniform_real_distribution<double> unif(0, 2 * 3.1415609);
     std::default_random_engine re;
 
     // Set up GNC-TLS solver
