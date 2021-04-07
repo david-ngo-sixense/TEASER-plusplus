@@ -16,7 +16,7 @@ namespace teaser {
  * @brief A class for reading PLY files.
  *
  */
-class PLYReader {
+class __declspec(dllexport)  PLYReader {
 public:
   /**
    * @brief Default constructor

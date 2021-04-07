@@ -27,7 +27,7 @@ namespace teaser {
 /**
  * Struct to hold solution to a registration problem
  */
-struct RegistrationSolution {
+struct __declspec(dllexport) RegistrationSolution {
   bool valid = true;
   double scale;
   Eigen::Vector3d translation;
@@ -39,7 +39,7 @@ struct RegistrationSolution {
 /**
  * Abstract virtual class for decoupling specific scale estimation methods with interfaces.
  */
-class AbstractScaleSolver {
+class __declspec(dllexport)  AbstractScaleSolver {
 public:
   virtual ~AbstractScaleSolver() {}
 
@@ -59,7 +59,7 @@ public:
  * Abstract virtual class for decoupling specific rotation estimation method implementations with
  * interfaces.
  */
-class AbstractRotationSolver {
+class __declspec(dllexport)  AbstractRotationSolver {
 public:
   virtual ~AbstractRotationSolver() {}
 
@@ -80,7 +80,7 @@ public:
  * Abstract virtual class for decoupling specific translation estimation method implementations with
  * interfaces.
  */
-class AbstractTranslationSolver {
+class __declspec(dllexport)  AbstractTranslationSolver {
 public:
   virtual ~AbstractTranslationSolver() {}
 
@@ -100,7 +100,7 @@ public:
 /**
  * Performs scalar truncated least squares estimation
  */
-class ScalarTLSEstimator {
+class __declspec(dllexport)  ScalarTLSEstimator {
 public:
   ScalarTLSEstimator() = default;
   /**
@@ -131,7 +131,7 @@ public:
 /**
  * Perform scale estimation using truncated least-squares (TLS)
  */
-class TLSScaleSolver : public AbstractScaleSolver {
+class __declspec(dllexport)  TLSScaleSolver : public AbstractScaleSolver {
 public:
   TLSScaleSolver() = delete;
 
@@ -162,7 +162,7 @@ private:
  * estimation. Rather, it estimates outliers based on the assumption that there is no scale
  * difference between the two provided vector of points.
  */
-class ScaleInliersSelector : public AbstractScaleSolver {
+class __declspec(dllexport)  ScaleInliersSelector : public AbstractScaleSolver {
 public:
   ScaleInliersSelector() = delete;
 
@@ -187,7 +187,7 @@ private:
 /**
  * Perform translation estimation using truncated least-squares (TLS)
  */
-class TLSTranslationSolver : public AbstractTranslationSolver {
+class __declspec(dllexport)  TLSTranslationSolver : public AbstractTranslationSolver {
 public:
   TLSTranslationSolver() = delete;
 
@@ -215,7 +215,7 @@ private:
 /**
  * Base class for GNC-based rotation solvers
  */
-class GNCRotationSolver : public AbstractRotationSolver {
+class __declspec(dllexport)  GNCRotationSolver : public AbstractRotationSolver {
 
 public:
   struct Params {
@@ -252,7 +252,7 @@ protected:
  * Perception: From Non-Minimal Solvers to Global Outlier Rejection,” arXiv:1909.08605 [cs, math],
  * Sep. 2019.
  */
-class GNCTLSRotationSolver : public GNCRotationSolver {
+class __declspec(dllexport) GNCTLSRotationSolver : public GNCRotationSolver {
 public:
   GNCTLSRotationSolver() = delete;
 
@@ -285,7 +285,7 @@ public:
  * only estimate rotation, instead of rotation and translation.
  *
  */
-class FastGlobalRegistrationSolver : public GNCRotationSolver {
+class __declspec(dllexport)  FastGlobalRegistrationSolver : public GNCRotationSolver {
 public:
   /**
    * Remove default constructor
@@ -319,7 +319,7 @@ public:
  * H. Yang, J. Shi, and L. Carlone, “TEASER: Fast and Certifiable Point Cloud Registration,”
  * arXiv:2001.07715 [cs, math], Jan. 2020.
  */
-class RobustRegistrationSolver {
+class __declspec(dllexport) RobustRegistrationSolver {
 public:
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 

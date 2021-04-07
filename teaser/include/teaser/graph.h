@@ -26,7 +26,7 @@ namespace teaser {
  *
  * For example, if the graph have 3 vertices, they have to be named 0, 1, and 2.
  */
-class Graph {
+class __declspec(dllexport)  Graph {
 public:
   Graph() : num_edges_(0){};
 
@@ -216,7 +216,7 @@ private:
  * Maximum Clique Algorithm for Large Sparse Graphs and Temporal Strong Components, arXiv preprint
  * 1302.6256, 2013.
  */
-class MaxCliqueSolver {
+class  __declspec(dllexport) MaxCliqueSolver {
 public:
   /**
    * Enum representing the solver algorithm to use

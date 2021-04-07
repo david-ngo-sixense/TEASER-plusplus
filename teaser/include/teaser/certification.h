@@ -16,7 +16,7 @@ namespace teaser {
 
 using SparseMatrix = Eigen::SparseMatrix<double, Eigen::ColMajor, int64_t>;
 
-struct CertificationResult {
+struct __declspec(dllexport) CertificationResult {
   bool is_optimal = false;
   double best_suboptimality = -1;
   std::vector<double> suboptimality_traj;
@@ -25,7 +25,7 @@ struct CertificationResult {
 /**
  * Abstract virtual class representing certification of registration results
  */
-class AbstractRotationCertifier {
+class  AbstractRotationCertifier {
 public:
   virtual ~AbstractRotationCertifier() {}
 
@@ -50,7 +50,7 @@ public:
  * [1] H. Yang, J. Shi, and L. Carlone, “TEASER: Fast and Certifiable Point Cloud Registration,”
  * arXiv:2001.07715 [cs, math], Jan. 2020.
  */
-class DRSCertifier : public AbstractRotationCertifier {
+class __declspec(dllexport)  DRSCertifier : public AbstractRotationCertifier {
 public:
 
   /**

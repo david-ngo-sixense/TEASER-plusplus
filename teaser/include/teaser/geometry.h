@@ -12,7 +12,7 @@
 
 namespace teaser {
 
-struct PointXYZ {
+struct  __declspec(dllexport) PointXYZ {
   float x;
   float y;
   float z;
@@ -23,7 +23,7 @@ struct PointXYZ {
   friend inline bool operator!=(const PointXYZ& lhs, const PointXYZ& rhs) { return !(lhs == rhs); }
 };
 
-class PointCloud {
+class  __declspec(dllexport) PointCloud {
 public:
   /**
    * @brief Default constructor for PointCloud

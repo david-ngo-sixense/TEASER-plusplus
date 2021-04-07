@@ -18,7 +18,7 @@ namespace teaser {
 using FPFHCloud = pcl::PointCloud<pcl::FPFHSignature33>;
 using FPFHCloudPtr = pcl::PointCloud<pcl::FPFHSignature33>::Ptr;
 
-class FPFHEstimation {
+class  __declspec(dllexport) FPFHEstimation {
 public:
   FPFHEstimation()
       : fpfh_estimation_(

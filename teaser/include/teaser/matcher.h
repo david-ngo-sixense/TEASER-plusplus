@@ -17,7 +17,7 @@
 
 namespace teaser {
 
-class Matcher {
+class __declspec(dllexport)  Matcher {
 public:
   typedef std::vector<Eigen::VectorXf> Feature;
   typedef flann::Index<flann::L2<float>> KDTree;
