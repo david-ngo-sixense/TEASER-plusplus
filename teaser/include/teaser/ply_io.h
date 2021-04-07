@@ -32,7 +32,7 @@ public:
 /**
  * @brief A class for writing PLY files.
  */
-class PLYWriter {
+class __declspec(dllexport) PLYWriter {
 public:
   /**
    * @brief Default constructor
