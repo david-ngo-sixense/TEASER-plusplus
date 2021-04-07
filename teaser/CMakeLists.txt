@@ -1,6 +1,8 @@
 project(teaser_source)
 include(GNUInstallDirs)
 
+set(LIBUNISTD_LIB "C:/dev/libunistd/build/Release/libunistd.lib")
+
 # teaser_io library
 add_library(teaser_io SHARED src/ply_io.cc)
 target_link_libraries(teaser_io PRIVATE tinyply)
@@ -46,6 +48,8 @@ install(TARGETS teaser_registration
 list(APPEND TEASERPP_EXPORTED_TARGETS teaser_registration pmc)
 add_library(teaserpp::teaser_registration ALIAS teaser_registration)
 
+target_link_libraries(teaser_io PRIVATE ${LIBUNISTD_LIB})
+target_link_libraries(teaser_registration PRIVATE ${LIBUNISTD_LIB})
 # teaser_features library
 if (BUILD_TEASER_FPFH)
     add_library(teaser_features SHARED
@@ -74,6 +78,8 @@ if (BUILD_TEASER_FPFH)
 
     list(APPEND TEASERPP_EXPORTED_TARGETS teaser_features)
     add_library(teaserpp::teaser_features ALIAS teaser_features)
+	
+	target_link_libraries(teaser_features PRIVATE ${LIBUNISTD_LIB})
 endif ()
 
 # march=native flag

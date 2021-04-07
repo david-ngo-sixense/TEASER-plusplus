@@ -12,6 +12,8 @@ if (NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
             STRING "Choose the type of build." FORCE)
 endif ()
 
+include_directories("C:/dev/libunistd/unistd")
+link_directories("C:/dev/libunistd/build/Release")
 
 # Options
 option(BUILD_TESTS "Build tests" ON)
