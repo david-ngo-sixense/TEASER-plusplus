@@ -44,7 +44,7 @@ int main() {
   // Load the .ply file
   teaser::PLYReader reader;
   teaser::PointCloud src_cloud;
-  auto status = reader.read("./example_data/bun_zipper_res3.ply", src_cloud);
+  auto status = reader.read("./../example_data/bun_zipper_res3.ply", src_cloud);
   int N = src_cloud.size();
 
   // Convert the point cloud to Eigen
@@ -91,6 +91,8 @@ int main() {
   teaser::RobustRegistrationSolver solver(params);
   std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
   solver.solve(src, tgt);
+
+
   std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
 
   auto solution = solver.getSolution();
