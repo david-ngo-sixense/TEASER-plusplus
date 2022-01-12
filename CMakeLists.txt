@@ -74,8 +74,9 @@ execute_process(COMMAND "${CMAKE_COMMAND}" --build .
 add_subdirectory("${CMAKE_BINARY_DIR}/pmc-src"
         "${CMAKE_BINARY_DIR}/pmc-build")
 
-include_directories(${CMAKE_BINARY_DIR}/libunistd-src/unistd)
-
+if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
+	include_directories(${CMAKE_BINARY_DIR}/libunistd-src/unistd)
+endif()
 # tinyply
 configure_file(cmake/tinyply.CMakeLists.txt.in tinyply-download/CMakeLists.txt)
 execute_process(COMMAND "${CMAKE_COMMAND}" -G "${CMAKE_GENERATOR}" .

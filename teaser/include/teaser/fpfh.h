@@ -18,6 +18,7 @@ namespace teaser {
 using FPFHCloud = pcl::PointCloud<pcl::FPFHSignature33>;
 using FPFHCloudPtr = pcl::PointCloud<pcl::FPFHSignature33>::Ptr;
 
+#ifdef _WIN32
 class  __declspec(dllexport) FPFHEstimation {
 public:
   FPFHEstimation()
@@ -76,5 +77,67 @@ private:
    */
   void setRadiusSearch(double);
 };
+#endif
+
+#ifdef linux
+class  FPFHEstimation {
+public:
+  FPFHEstimation()
+      : fpfh_estimation_(
+            new pcl::FPFHEstimation<pcl::PointXYZ, pcl::Normal, pcl::FPFHSignature33>){};
+
+  /**
+   * Compute FPFH features.
+   *
+   * @return A shared pointer to the FPFH feature point cloud
+   * @param input_cloud
+   * @param normal_search_radius Radius for estimating normals
+   * @param fpfh_search_radius Radius for calculating FPFH (needs to be at least normalSearchRadius)
+   */
+  FPFHCloudPtr computeFPFHFeatures(const PointCloud& input_cloud, double normal_search_radius = 0.03,
+                                        double fpfh_search_radius = 0.05);
+
+  /**
+   * Return the pointer to the underlying pcl::FPFHEstimation object
+   * @return
+   */
+  inline pcl::FPFHEstimation<pcl::PointXYZ, pcl::Normal, pcl::FPFHSignature33>::Ptr
+  getImplPointer() const {
+    return fpfh_estimation_;
+  }
+
+private:
+  pcl::FPFHEstimation<pcl::PointXYZ, pcl::Normal, pcl::FPFHSignature33>::Ptr fpfh_estimation_;
+
+  /**
+   * Wrapper function for the corresponding PCL function.
+   * @param output_cloud
+   */
+  void compute(pcl::PointCloud<pcl::FPFHSignature33>& output_cloud);
+
+  /**
+   * Wrapper function for the corresponding PCL function.
+   * @param input_cloud
+   */
+  void setInputCloud(pcl::PointCloud<pcl::PointXYZ>::Ptr input_cloud);
+
+  /**
+   * Wrapper function for the corresponding PCL function.
+   * @param input_normals
+   */
+  void setInputNormals(pcl::PointCloud<pcl::Normal>::Ptr input_normals);
+
+  /**
+   * Wrapper function for the corresponding PCL function.
+   * @param search_method
+   */
+  void setSearchMethod(pcl::search::KdTree<pcl::PointXYZ>::Ptr search_method);
+
+  /**
+   * Wrapper function for the corresponding PCL function.
+   */
+  void setRadiusSearch(double);
+};
+#endif
 
 } // namespace teaser
