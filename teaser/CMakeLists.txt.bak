@@ -27,7 +27,7 @@ add_library(teaser_registration SHARED
         )
 target_link_libraries(teaser_registration
         PUBLIC Eigen3::Eigen
-        PUBLIC pmc 
+        PRIVATE pmc 
 		PRIVATE ${TEASERPP_BLAS_LAPACK_LIBS}
         )
 target_include_directories(teaser_registration PUBLIC
